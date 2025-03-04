@@ -1,12 +1,9 @@
 <template>
   <div class="menu-page">
     <TopBar />
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">Our Menu</h1>
-        <p class="hero-description">Discover our delicious and curated selection of dishes, prepared to perfection.</p>
-      </div>
-    </section>
+    <HeroSection 
+      title="Our Menu" 
+      description="Explore our delicious menu of appetizers, main dishes, and desserts." />
 
     <!-- Menu Categories Section -->
     <section class="categories-section">
@@ -15,7 +12,7 @@
       </div>
       <div class="dish-list">
         <div class="dish-item">
-          <img src="@/assets/restaurant-bg.jpg" alt="Dish 1" />
+          <img src="@/assets/bruschetta.jpg" alt="Dish 1" />
           <div class="dish-details">
             <h3>Bruschetta</h3>
             <p class="dish-description">Crispy toasted bread topped with tomatoes, basil, and balsamic glaze.</p>
@@ -23,7 +20,7 @@
           </div>
         </div>
         <div class="dish-item">
-          <img src="@/assets/restaurant-bg.jpg" alt="Dish 2" />
+          <img src="@/assets/mushroom.jpg" alt="Dish 2" />
           <div class="dish-details">
             <h3>Stuffed Mushrooms</h3>
             <p class="dish-description">Mushrooms stuffed with garlic, cheese, and fresh herbs.</p>
@@ -41,7 +38,7 @@
       </div>
       <div class="dish-list">
         <div class="dish-item">
-          <img src="@/assets/restaurant-bg.jpg" alt="Dish 3" />
+          <img src="@/assets/salmon.jpg" alt="Dish 3" />
           <div class="dish-details">
             <h3>Grilled Salmon</h3>
             <p class="dish-description">Fresh salmon fillet, grilled with lemon and herbs.</p>
@@ -49,7 +46,7 @@
           </div>
         </div>
         <div class="dish-item">
-          <img src="@/assets/restaurant-bg.jpg" alt="Dish 4" />
+          <img src="@/assets/spaghetti.jpg" alt="Dish 4" />
           <div class="dish-details">
             <h3>Spaghetti Carbonara</h3>
             <p class="dish-description">Classic pasta with creamy sauce, pancetta, and parmesan.</p>
@@ -67,7 +64,7 @@
       </div>
       <div class="dish-list">
         <div class="dish-item">
-          <img src="@/assets/restaurant-bg.jpg" alt="Dish 5" />
+          <img src="@/assets/tiramisu.jpg" alt="Dish 5" />
           <div class="dish-details">
             <h3>Tiramisu</h3>
             <p class="dish-description">Layers of coffee-soaked sponge cake, mascarpone, and cocoa powder.</p>
@@ -75,7 +72,7 @@
           </div>
         </div>
         <div class="dish-item">
-          <img src="@/assets/restaurant-bg.jpg" alt="Dish 6" />
+          <img src="@/assets/lavacake.jpg" alt="Dish 6" />
           <div class="dish-details">
             <h3>Chocolate Lava Cake</h3>
             <p class="dish-description">Decadent molten chocolate cake with a rich center.</p>
@@ -87,18 +84,34 @@
     </section>
 
     <!-- Footer -->
-   <FooterBar />
+    <FooterBar />
   </div>
 </template>
 
 <script>
 import FooterBar from '@/components/FooterBar.vue';
+import HeroSection from '@/components/HeroSection.vue';
 import TopBar from '@/components/TopBar.vue';
 
 export default {
   name: 'MenuPage',
   components: {
-    TopBar,FooterBar
+    TopBar, FooterBar, HeroSection
+  },
+  mounted() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('pop-in');
+        } else {
+          entry.target.classList.remove('pop-in');
+        }
+      });
+    });
+
+    this.$el.querySelectorAll('.categories-section').forEach(el => {
+      observer.observe(el);
+    });
   }
 };
 </script>
@@ -106,13 +119,13 @@ export default {
 <style scoped>
 /* 🍽️ General Layout */
 .menu-page {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Kanit', sans-serif;
+  background-image: linear-gradient(to bottom, gold ,black); /* Soft background color */
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  background-color: rgb(255, 255, 255);
   min-height: 100vh; /* Ensure the entire height of the screen is used */
 }
 
@@ -136,10 +149,15 @@ export default {
   width: 100%;
 }
 
+.categories-section.pop-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .hero-title {
   font-size: 3rem;
   font-weight: 700;
-  color: #d4af37;
+  color: #d4af37; /* Gold accent */
 }
 
 .hero-description {
@@ -152,11 +170,17 @@ export default {
 .categories-section {
   padding: 60px 20px;
   text-align: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  background-color: rgba(255, 255, 255, 0.671);
+  margin-top: 50px;
 }
 
 .section-title h2 {
   font-size: 2.5rem;
-  color: #2e1a07;
+  color: #000000; /* Gold accent */
   margin-bottom: 20px;
   font-weight: bold;
 }
@@ -179,10 +203,10 @@ export default {
 }
 
 .dish-item {
-  background-color: rgba(255, 255, 255, 0.644);
+  background-color: rgba(255, 255, 255, 0.914); /* Slightly transparent white */
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 350px;
   display: flex;
@@ -192,27 +216,26 @@ export default {
 
 .dish-item img {
   width: 100%;
+  max-height: 200px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .dish-details h3 {
   font-size: 1.5rem;
-  color: #2e1a07;
+  color: #d4af37; /* Gold accent */
   margin-top: 15px;
 }
 
 .dish-description {
   font-size: 1.1rem;
-  color: #555;
+  color: #000000;
   margin-bottom: 15px;
 }
 
 .dish-price {
   font-size: 1.3rem;
-  color: #d4af37;
+  color: #d4af37; /* Gold accent */
   font-weight: bold;
 }
-
-
 </style>

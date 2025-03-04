@@ -27,9 +27,8 @@ export default {
   flex-direction: column;
   justify-content: space-between; /* Change from center to space-between */
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  background: url('@/assets/restaurant-bg.jpg') no-repeat center center/cover;
   box-sizing: border-box;
   position: relative;
   margin: 0;

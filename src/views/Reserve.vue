@@ -77,6 +77,7 @@ export default {
 <style scoped>
 /* 🍽️ Main Background */
 .flex-box {
+  font-family: 'Kanit', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -116,7 +117,6 @@ export default {
   font-weight: bold;
   color: #d4af37; /* Gold accent */
   margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
   letter-spacing: 2px;
 }
 
