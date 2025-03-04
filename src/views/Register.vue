@@ -63,6 +63,7 @@ export default {
 <style scoped>
 /* 🍽️ Main Background */
 .flex-box {
+  font-family: 'Kanit', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

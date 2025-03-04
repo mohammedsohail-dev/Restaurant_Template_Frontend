@@ -74,7 +74,6 @@ export default {
   font-weight: bold;
   color: #d4af37; /* Gold accent */
   margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
   letter-spacing: 2px;
 }
 
@@ -184,6 +183,10 @@ export default {
 .login-link {
   margin-top: 1rem;
   font-family: 'Poppins', sans-serif;
+}
+
+.login-link p{
+  color:white;
 }
 
 .login-text {

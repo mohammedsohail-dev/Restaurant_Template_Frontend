@@ -2,7 +2,7 @@
     <div class="login-container">
       <div class="login-form">
         <form @submit.prevent="login">
-          <div class="title"> Maison </div>
+          <div class="title"> Restaurant_name </div>
           <div class="text_username"> Email </div>
           <div><input class="username" v-model="username" /> </div>
           <div class="text_password"> Password </div>
@@ -98,7 +98,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url('@/assets/restaurant-bg.jpg') no-repeat center center/cover;
   width: 100%;
+  height: 100vh;
+  padding: 40px;
 }
 
 
@@ -120,7 +123,6 @@ export default {
   font-weight: bold;
   color: #d4af37; /* Gold accent */
   margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
   letter-spacing: 2px;
 }
 
@@ -132,7 +134,6 @@ export default {
   margin-top: 1rem;
   text-align: left;
   display: block;
-  font-family: 'Poppins', sans-serif;
 }
 
 /* 🍽️ Input Fields - Luxurious Look */
@@ -148,7 +149,6 @@ export default {
   font-size: 1.1rem;
   outline: none;
   transition: 0.3s;
-  font-family: 'Poppins', sans-serif;
 }
 
 .username::placeholder,

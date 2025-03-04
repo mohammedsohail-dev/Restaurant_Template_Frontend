@@ -37,15 +37,31 @@ import ContactusSection from '@/components/ContactusSection.vue';
 export default {
   name: 'LandingPage',
   components: {
-    TopBar, FooterBar, HeroSection, AboutSection,MenuSection, GallerySection,ContactusSection
+    TopBar, FooterBar, HeroSection, AboutSection, MenuSection, GallerySection, ContactusSection
+  },
+  mounted() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('pop-in');
+        } else {
+          entry.target.classList.remove('pop-in');
+        }
+      });
+    });
+
+    this.$el.querySelectorAll('section').forEach(el => {
+      observer.observe(el);
+    });
   }
 };
 </script>
 
 <style scoped>
+
 /* 🍽️ General Layout */
 .landing-page {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -55,4 +71,14 @@ export default {
   background-image: linear-gradient(to bottom, gold ,black); /* Soft background color */
 }
 
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.pop-in {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
