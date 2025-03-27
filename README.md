@@ -18,7 +18,7 @@ A modern Vue.js 3 frontend template for restaurant websites featuring authentica
 - **Vuetify** components (Material Design)
 - **Linting** with ESLint for code quality
 
-##Images for reference
+## Images for reference
 ![HomePage part 1](https://github.com/user-attachments/assets/1ff691e5-01d0-4acc-8fe0-5867edfe5216)
 ![HomePage part 2](https://github.com/user-attachments/assets/aef66fe8-0c66-4ad6-bca8-7293c702714f)
 ![HomePage part 3](https://github.com/user-attachments/assets/d5c176d4-9bd0-4847-9d2a-05244f31eeac)
