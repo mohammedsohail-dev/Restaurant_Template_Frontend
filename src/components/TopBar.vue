@@ -8,23 +8,42 @@
     </div>
     <div class="nav-links" :class="{ 'open': menuOpen }">
       <router-link to="/reserve" class="btn-primary">Reserve</router-link>
-      <router-link to="/register" class="btn-primary">Register</router-link>
+      <div v-if= loggedIn @click = "logout" class="btn-primary">Logout</div>
+      <div v-if= !loggedIn @click = "login" class="btn-primary">Login</div>
       <router-link to="/menu" class="btn-primary">Menu</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import keycloak from '@/keycloak'; // Import keycloak
+
 export default {
   name: 'TopBar',
   data() {
     return {
-      menuOpen: false
+      menuOpen: false,
+      loggedIn: false
     };
   },
   methods: {
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
+    },
+    logout() {
+    keycloak.logout({ redirectUri: window.location.origin }); 
+    this.$store.commit('clearUser'); 
+    localStorage.removeItem('access_token'); 
+    sessionStorage.removeItem('user'); 
+    localStorage.removeItem('user');
+    },
+    login(){
+      keycloak.login();
+    }
+  },
+  mounted(){
+    if(localStorage.getItem('access_token') != null){
+      this.loggedIn = true;
     }
   }
 };
@@ -89,6 +108,7 @@ export default {
 .nav-links {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .nav-links .btn-primary {

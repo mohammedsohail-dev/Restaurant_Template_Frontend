@@ -3,7 +3,7 @@
     <div class="hero-content">
       <h1 class="hero-title">{{ title }}</h1>
       <p class="hero-description">{{ description }}</p>
-      <router-link to="/menu" class="btn-primary">Reserve a Table</router-link>
+      <router-link to="/reserve" class="btn-primary">Reserve a Table</router-link>
     </div>
   </section>
 </template>

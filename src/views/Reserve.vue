@@ -44,12 +44,18 @@ export default {
     async reserve() {
       this.loading = true;
       try {
-        // Reservation logic here
-        // Example: Send a POST request to your reservation endpoint
-        const response = await fetch("http://localhost:9090/reserve", {
+        // Get the token from local storage or any other storage mechanism
+        const token = localStorage.getItem('access_token');
+
+        if (!token) {
+          throw new Error('No access token found');
+        }
+
+        const response = await fetch("http://localhost:8081/api/reservations", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify({
             name: this.name,
